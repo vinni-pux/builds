@@ -3,11 +3,10 @@ angular.module('remoteWork.services', [])
 
     var ergastAPI = {};
 
-    ergastAPI.getVacancies = function(id) {
+    ergastAPI.getVacancies = function() {
       return $http({
         method: 'GET', 
-        withCredentials: false,
-        url: 'https://api.hh.ru/vacancies?schedule=remote&specialization=' + id
+        url: 'data.json'
       });
     }
 
