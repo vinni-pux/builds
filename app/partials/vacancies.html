@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-hover">
+  <table class="table table-hover builds">
     <thead>
       <tr>
         <th colspan="2">Changelist/Build</th>
@@ -13,12 +13,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="build in builds | filter: searchFilter">
+      <tr ng-repeat-start="build in builds" 
+          ng-class="{active:build.selected}" 
+          class="css-{{build.state|lowercase}}">
         <td>
           Logo
         </td>
         <td>
-          {{build.name}}
+          <a href="" ng-click="select(build)">{{build.name}}</a>
         </td>
         <td>
           {{build.owner}}
@@ -42,24 +44,11 @@
           Functional
         </td>
       </tr>
+      <tr ng-repeat-end>
+        <td ng-show="build.selected" colspan="9">
+          <buildinfo></buildinfo>
+        </td>
+      </tr>
     </tbody>
   </table>
-<div>
-  <div class="css-info-block">
-    <span>Metrics</span>
-  </div>
-  <div class="css-info-block">
-    <stages name="Build"></stages>
-  </div>
-  <div class="css-info-block">
-    <piechart name={{name1}}></piechart>
-  </div>
-  <div class="css-info-block">
-    <piechart name="Functional Test"></piechart>
-  </div>
-  <div class="css-action-block">
-    Action
-  </div>
-</div>
-
 </div>
